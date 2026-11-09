@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pizza-devops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pizza-devops
+  template:
+    metadata:
+      labels:
+        app: pizza-devops
+    spec:
+      containers:
+        - name: web
+          image: brelos/pizza-devops:1.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_VERSION
+              value: "1.0"
