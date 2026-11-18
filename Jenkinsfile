@@ -48,6 +48,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
+                    export KUBECONFIG=/root/.kube/config
                     kubectl set image deployment/pizza-devops web="$IMAGE:$BUILD_NUMBER"
                     kubectl rollout status deployment/pizza-devops
                 '''
